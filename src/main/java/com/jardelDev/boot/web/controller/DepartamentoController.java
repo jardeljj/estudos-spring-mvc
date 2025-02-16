@@ -54,16 +54,16 @@ public class DepartamentoController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, ModelMap model){
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
 
-        if (service.departamentoTemCargos(id)){
-            model.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculado(s)");
-        }else{
+        if (service.departamentoTemCargos(id)) {
+            model.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculado(s).");
+        } else {
             service.excluir(id);
-            model.addAttribute("success", "Departamento excluído com sucesso!");
+            model.addAttribute("success", "Departamento excluído com sucesso.");
         }
-        return listar(model);
 
+        return listar(model);
     }
 
 }
