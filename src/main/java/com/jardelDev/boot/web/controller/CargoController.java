@@ -4,9 +4,11 @@ import com.jardelDev.boot.domain.Cargo;
 import com.jardelDev.boot.domain.Departamento;
 import com.jardelDev.boot.service.CargoService;
 import com.jardelDev.boot.service.DepartamentoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,31 +25,40 @@ public class CargoController {
     private DepartamentoService departamentoService;
 
     @GetMapping("/cadastrar")
-    public String cadastrar(Cargo cargo){
+    public String cadastrar(Cargo cargo) {
         return "/cargo/cadastro";
     }
 
     @GetMapping("/listar")
-    public String listar(ModelMap model){
+    public String listar(ModelMap model) {
         model.addAttribute("cargos", cargoService.buscarTodos());
         return "/cargo/lista";
     }
 
     @PostMapping("/salvar")
-    public String salvar(Cargo cargo, RedirectAttributes attr){
+    public String salvar(@Valid Cargo cargo, BindingResult result, RedirectAttributes attr) {
+
+        if (result.hasErrors()) {
+            return "/cargo/cadastro";
+        }
+
         cargoService.salvar(cargo);
-        attr.addFlashAttribute("success", "Cargo inserido com sucesso");
+        attr.addFlashAttribute("success", "Cargo inserido com sucesso.");
         return "redirect:/cargos/cadastrar";
     }
 
     @GetMapping("/editar/{id}")
-    public String preEditar(@PathVariable("id") Long id, ModelMap model){
+    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("cargo", cargoService.buscarPorId(id));
         return "/cargo/cadastro";
     }
 
     @PostMapping("/editar")
-    public String editar(Cargo cargo, RedirectAttributes attr){
+    public String editar(@Valid Cargo cargo, BindingResult result, RedirectAttributes attr) {
+
+        if (result.hasErrors()) {
+            return "/cargo/cadastro";
+        }
         cargoService.editar(cargo);
         attr.addFlashAttribute("success", "Cargo editado com sucesso.");
         return "redirect:/cargos/cadastrar";
@@ -68,7 +79,7 @@ public class CargoController {
 
 
     @ModelAttribute("departamentos")
-    public List<Departamento> listaDeDepartamentos(){
+    public List<Departamento> listaDeDepartamentos() {
         return departamentoService.buscarTodos();
     }
 

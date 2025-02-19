@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-<head>
-    <title>Spring-Boot Básico</title>
-    <meta charset="UTF-8"/>
-
-</head>
+<head><meta charset="UTF-8"/></head>
 <body>
 
 <section class="layout-content" layout:fragment="corpo">
@@ -30,6 +26,9 @@
 
         <form th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}"
               th:object="${departamento}" method="POST">
+
+            <div th:replace="fragments/validacao :: validacao"></div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nome">Departamento</label>
@@ -42,6 +41,5 @@
         </form>
     </div>
 </section>
-
 </body>
 </html>
