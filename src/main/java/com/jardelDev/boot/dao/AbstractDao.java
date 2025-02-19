@@ -1,15 +1,17 @@
 package com.jardelDev.boot.dao;
 
+import com.jardelDev.boot.domain.Funcionario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.time.LocalDate;
 import java.util.List;
 
 // T representa a entidade (cargo, funcionario etc...) - PK tipo referente ao tipo de chave primaria como um Long ou Interger
-public class AbstractDao<T, PK extends Serializable> {
+public abstract class AbstractDao<T, PK extends Serializable> {
 
     @SuppressWarnings("unchecked")
     private final Class<T> entityClass =
@@ -56,5 +58,6 @@ public class AbstractDao<T, PK extends Serializable> {
         }
         return query.getResultList();
     }
+
 
 }

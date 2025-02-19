@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public class DepartamentoDaoImpl extends AbstractDao<Departamento, Long> implements DepartamentoDao {
 
 
+
 }
