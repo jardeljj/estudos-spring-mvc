@@ -1,6 +1,7 @@
 package com.jardelDev.boot.service;
 
 import com.jardelDev.boot.domain.Cargo;
+import com.jardelDev.boot.util.PaginacaoUtil;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface CargoService {
     List<Cargo> buscarTodos();
 
     boolean cargoTemfuncionarios(Long id);
+
+    PaginacaoUtil<Cargo> buscaPorPagina(int pagina);
 }

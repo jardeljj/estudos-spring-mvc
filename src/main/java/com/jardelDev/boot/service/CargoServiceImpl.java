@@ -2,6 +2,7 @@ package com.jardelDev.boot.service;
 
 import com.jardelDev.boot.dao.CargoDao;
 import com.jardelDev.boot.domain.Cargo;
+import com.jardelDev.boot.util.PaginacaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,5 +49,11 @@ public class CargoServiceImpl implements CargoService{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public PaginacaoUtil<Cargo> buscaPorPagina(int pagina) {
+
+        return dao.buscaPaginada(pagina);
     }
 }

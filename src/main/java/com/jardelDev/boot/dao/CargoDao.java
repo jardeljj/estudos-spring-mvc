@@ -1,6 +1,7 @@
 package com.jardelDev.boot.dao;
 
 import com.jardelDev.boot.domain.Cargo;
+import com.jardelDev.boot.util.PaginacaoUtil;
 
 import java.util.List;
 
@@ -16,5 +17,6 @@ public interface CargoDao {
 
     List<Cargo> findAll();
 
+    PaginacaoUtil<Cargo> buscaPaginada(int pagina);
 
 }
