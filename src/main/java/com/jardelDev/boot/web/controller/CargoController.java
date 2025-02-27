@@ -4,6 +4,7 @@ import com.jardelDev.boot.domain.Cargo;
 import com.jardelDev.boot.domain.Departamento;
 import com.jardelDev.boot.service.CargoService;
 import com.jardelDev.boot.service.DepartamentoService;
+import com.jardelDev.boot.util.PaginacaoUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("cargos")
@@ -30,8 +32,12 @@ public class CargoController {
     }
 
     @GetMapping("/listar")
-    public String listar(ModelMap model) {
-        model.addAttribute("cargos", cargoService.buscarTodos());
+    public String listar(ModelMap model, @RequestParam("page")Optional<Integer> page) {
+
+        int paginaAtual = page.orElse(1);
+        PaginacaoUtil<Cargo> pageCargo = cargoService.buscaPorPagina(paginaAtual);
+
+        model.addAttribute("pageCargo", pageCargo);
         return "cargo/lista";
     }
 
