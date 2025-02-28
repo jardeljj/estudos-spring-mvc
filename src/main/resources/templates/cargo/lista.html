@@ -31,13 +31,11 @@
                 <tr>
                     <th>#</th>
                     <th>
-                        <a th:href="@{/cargos/listar(page=${pageCargo.pagina}, dir=desc)}"
-                           tabindex="-1">
-                            <span class="oi oi-sort-descending" title="sort-descending" aria-hidden="true"></span></a>
+                        <a class="" th:href="@{/cargos/listar(page=${pageCargo.pagina}, dir=desc)}" tabindex="-1">
+                            <span class="oi oi-arrow-bottom"></span></a>
                         Cargo
-                        <a th:href="@{/cargos/listar(page=${pageCargo.pagina}, dir= asc)}"
-                           tabindex="-1">
-                            <span class="oi oi-sort-ascending" title="sort-ascending" aria-hidden="true"></a>
+                        <a class="" th:href="@{/cargos/listar(page=${pageCargo.pagina}, dir=asc)}"tabindex="-1">
+                            <span class="oi oi-arrow-top"></span></a>
                     </th>
                     <th>Departamento</th>
                     <th>Ação</th>
