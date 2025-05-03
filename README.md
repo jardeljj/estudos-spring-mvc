@@ -31,6 +31,8 @@ Este repositório tem como objetivo o estudo e a implementação da estrutura MV
 - [📌 Guia do Spring MVC](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
 
 ## 🚧 Status do Projeto
-🚀 Em andamento 🚧
+🚀 Em andamento
+   - Pendente:Ordenação por Departamento ou cargo, Seleção de quantidade de linhas por página.
+ 🚧
 
 -JardelDev
